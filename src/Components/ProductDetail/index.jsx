@@ -26,9 +26,10 @@ const ProductDetail = () => {
           alt={context.productToShow.title} />
       </figure>
       <p className='flex flex-col p-6'>
-        <span className='font-medium text-2xl mb-2 flex items-center '><BsCashCoin className='text-cyan-600 mr-2'/>{context.productToShow.price}</span>
+        <img className='h-[15rem] w-[15rem] self-center' src={`${context.productToShow.image}`} alt="imagen" />
         <span className='font-medium text-md'>{context.productToShow.title}</span>
         <span className='font-light text-sm'>{context.productToShow.description}</span>
+        <span className='font-medium text-2xl mb-2 flex items-center mt-4 self-end '><BsCashCoin className='text-cyan-600 mr-2'/>{context.productToShow.price}</span>
       </p>
     </aside>
   )

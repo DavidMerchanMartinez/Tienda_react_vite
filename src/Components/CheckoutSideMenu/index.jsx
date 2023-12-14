@@ -10,15 +10,14 @@ import { BsCashCoin } from "react-icons/bs"
 
 const CheckoutSideMenu = () => {
   const context = useContext(ShoppingCartContext)
-
   const handleDelete = (id) => {
     const filteredProducts = context.cartProducts.filter(product => product.id != id)
     context.setCartProducts(filteredProducts)
   }
 
   const handleCheckout = () => {
+    console.log('Productos en el carrito:', context.cartProducts);
     const date = new Date().toISOString().split('T')[0]
-    console.log(date)
     const orderToAdd = {
       date:date ,
       products: context.cartProducts,
@@ -49,7 +48,7 @@ const CheckoutSideMenu = () => {
               key={product.id}
               id={product.id}
               title={product.title}
-              imageUrl={product.images}
+              imageUrl={product.image} 
               price={product.price}
               handleDelete={handleDelete}
             />
