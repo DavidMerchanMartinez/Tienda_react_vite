@@ -1,9 +1,10 @@
+import Account from '../../Components/Account'
 import Layout from '../../Components/Layout'
 
 function MyAccount() {
   return (
     <Layout>
-      MyAccount
+      <Account/>
     </Layout>
   )
 }
