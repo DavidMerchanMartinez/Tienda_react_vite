@@ -3,23 +3,57 @@ import { NavLink } from 'react-router-dom'
 import { ShoppingBagIcon } from '@heroicons/react/24/solid'
 import { ShoppingCartContext } from '../../Context'
 import { FaShopify } from "react-icons/fa";
+import { LuMenuSquare } from "react-icons/lu";
 
 const Navbar = () => {
   const context = useContext(ShoppingCartContext)
   const activeStyle = 'underline underline-offset-4 text-cyan-600'
+  
+  console.log(context.isMenuActive)
+
+
+  const menuClick = () => {
+      if(context.isMenuActive){
+        context.setIsMenuActive(false)
+      }else{
+        context.setIsMenuActive(true)
+      } 
+  }
+
+
 
   return (
     <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-white '>
       <ul className='flex items-center gap-3'>
-        <li className='font-semibold text-lg'>
-          <NavLink to='/'>
+        <li className='font-semibold text-lg flex items-center'>
+        
+        
+          <NavLink to={!context.isMenuActive? "/menu" : "/" } 
+                    className={`hidden celular:block `}
+                    onClick={menuClick}
+                   >
+              <div className='mr-2'> <LuMenuSquare className='h-6 w-6' /></div>
+          </NavLink>
+        
+          <NavLink to='/' 
+          onClick={() => {
+            context.setIsMenuActive(false)
+            context.setSearchByCategory()
+          }
+          }>
             <div className='flex items-center'><FaShopify className=' text-cyan-600'/>Shopi</div>
           </NavLink>
+          
         </li>
+
         <li>
           <NavLink
             to='/'
-            onClick={() => context.setSearchByCategory()}
+            onClick={() =>{
+              context.setSearchByCategory()
+              context.setIsMenuActive(false)
+            }
+          }
             className={({ isActive }) =>
               isActive ? activeStyle : undefined
             }>
@@ -29,7 +63,11 @@ const Navbar = () => {
         <li>
           <NavLink
             to='/clothes'
-            onClick={() => context.setSearchByCategory("clothing")}
+            onClick={() => {
+              context.setSearchByCategory("clothing")
+              context.setIsMenuActive(false)
+              }
+            }
             className={({ isActive }) =>
               isActive ? activeStyle : undefined
             }>
@@ -39,7 +77,11 @@ const Navbar = () => {
         <li>
           <NavLink
             to='/electronics'
-            onClick={() => context.setSearchByCategory('electronics')}
+            onClick={() => {
+              context.setSearchByCategory('electronics')
+              context.setIsMenuActive(false)
+            }
+            }
             className={({ isActive }) =>
               isActive ? activeStyle : undefined
             }>
@@ -48,8 +90,12 @@ const Navbar = () => {
         </li>
         <li>
           <NavLink
-            to='/furnitures'
-            onClick={() => context.setSearchByCategory("jewelery")}
+            to='/jewelery'
+            onClick={() => {
+              context.setSearchByCategory("jewelery")
+              context.setIsMenuActive(false)
+            } 
+            }
             className={({ isActive }) =>
               isActive ? activeStyle : undefined
             }>
@@ -58,7 +104,7 @@ const Navbar = () => {
         </li>
        
       </ul>
-      <ul className='flex items-center gap-3'>
+      <ul className='flex items-center gap-3 celular:hidden'>
         <li className='text-black/60'>
          david@gmail.com
         </li>

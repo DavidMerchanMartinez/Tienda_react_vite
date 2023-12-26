@@ -16,6 +16,9 @@ export const ShoppingCartProvider = ({children}) => {
   const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true)
   const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false)
 
+  //menu
+  const [isMenuActive, setIsMenuActive] = useState(false);
+
   // Product Detail · Show product
   const [productToShow, setProductToShow] = useState({})
 
@@ -103,7 +106,9 @@ export const ShoppingCartProvider = ({children}) => {
       setSearchByTitle,
       filteredItems,
       searchByCategory,
-      setSearchByCategory
+      setSearchByCategory,
+      isMenuActive,
+      setIsMenuActive
     }}>
       {children}
     </ShoppingCartContext.Provider>

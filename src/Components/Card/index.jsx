@@ -57,7 +57,7 @@ const Card = (data) => {
       </figure>
       <p className='flex justify-between'>
         <span className='text-sm font-light max-h-10'>{data.data.title}</span>
-        <span className='text-lg font-medium flex items-center ml-3 items-center'><BsCashCoin className='mr-2  text-cyan-600'/>{data.data.price}</span>
+        <span className='text-lg font-medium flex items-center ml-3 '><BsCashCoin className='mr-2  text-cyan-600'/>{data.data.price}</span>
       </p>
     </div>
   )
