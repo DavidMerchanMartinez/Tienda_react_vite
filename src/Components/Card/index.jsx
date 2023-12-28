@@ -48,7 +48,7 @@ const Card = (data) => {
 
   return (
     <div
-      className=' bg-slate-100 cursor-pointer w-56 h-60 rounded-lg hover:scale-110 overflow-hidden'
+      className=' bg-slate-100 cursor-pointer w-56 h-60 rounded-lg hover:scale-110 overflow-hidden celular:mt-5'
       onClick={() => showProduct(data.data)}>
       <figure className='relative mb-2 w-full h-4/5'>
         <span className='absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 px-3 py-0.5'>{data.data.category}</span>

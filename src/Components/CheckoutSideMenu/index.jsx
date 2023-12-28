@@ -30,9 +30,17 @@ const CheckoutSideMenu = () => {
     context.setSearchByTitle(null)
   }
 
+  const priceNull = () => {  
+    if(totalPrice(context.cartProducts) != 0){
+      context.closeCheckoutSideMenu()
+      handleCheckout()  
+    }
+      
+  }
+
   return (
     <aside
-      className={`${context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white`}>
+      className={`${context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white w-[21%] celular:w-full`}>
       <div className='flex justify-between items-center p-6'>
         <h2 className='font-medium text-xl text-cyan-600'>My Order</h2>
         <div>
@@ -61,7 +69,10 @@ const CheckoutSideMenu = () => {
           <span className='font-medium text-2xl flex items-center'><BsCashCoin className='mr-2 text-cyan-600'/>{totalPrice(context.cartProducts)}</span>
         </p>
         <Link to='/my-orders/last'>
-          <button className='bg-cyan-600 py-3 text-white w-full rounded-lg' onClick={() => handleCheckout()}>Checkout</button>
+          <button className='bg-cyan-600 py-3 text-white w-full rounded-lg' 
+          onClick={() => {
+            priceNull()
+          }}>Checkout</button>
         </Link>
       </div>
     </aside>
