@@ -131,7 +131,7 @@ const Navbar = () => {
             className={({ isActive }) =>
               isActive ? activeStyle : undefined
             }>
-            Sign In
+            Sign out
           </NavLink>
         </li>
         <li className='flex items-center'>

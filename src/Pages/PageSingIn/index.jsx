@@ -1,7 +1,7 @@
 import Layout from '../../Components/Layout'
 import SignIn from '../../Components/SignIn'
 
-function Signin() {
+function PageSingIn() {
   return (
     <Layout>
       <SignIn/>
@@ -9,4 +9,4 @@ function Signin() {
   )
 }
 
-export default Signin
+export default PageSingIn

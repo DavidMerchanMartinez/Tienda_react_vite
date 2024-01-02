@@ -5,7 +5,7 @@ import MyAccount from '../MyAccount'
 import MyOrder from '../MyOrder'
 import MyOrders from '../MyOrders'
 import NotFound from '../NotFound'
-import Signin from '../Signin'
+import PageSingIn from '../PageSingIn'
 import Signout from '../Signout'
 
 import Navbar from '../../Components/Navbar'
@@ -25,7 +25,7 @@ const AppRoutes = () => {
     { path: '/my-orders', element: <MyOrders /> },
     { path: '/my-orders/last', element: <MyOrder /> },
     { path: '/my-orders/:id', element: <MyOrder /> },
-    { path: '/sing-in', element: <Signin /> },
+    { path: '/sing-in', element: <PageSingIn /> },
     { path: '/sing-out', element: <Signout/> },
     { path: '/*', element: <NotFound /> },
   ])
