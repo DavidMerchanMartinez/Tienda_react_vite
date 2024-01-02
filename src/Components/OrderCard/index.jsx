@@ -6,7 +6,7 @@ const OrderCard = props => {
   
 
   const { id, title, imageUrl, price, handleDelete } = props
-  console.log('Productos en el carrito desde order card:', {imageUrl});
+  
   let renderXMarkIcon
   if (handleDelete) {
     renderXMarkIcon = <RiDeleteBackLine onClick={() => handleDelete(id)} className='h-6 w-6 text-cyan-600 cursor-pointer mr-2'></RiDeleteBackLine>

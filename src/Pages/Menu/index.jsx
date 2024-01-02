@@ -22,9 +22,9 @@ const context = useContext(ShoppingCartContext)
           </div>
         </NavLink>
       
-        <NavLink to="/sing-in" className="flex w-[60%] h-[8%] border-2 items-center rounded-lg justify-center" onClick={()=>{context.setIsMenuActive(false)}}>
+        <NavLink to="/sing-out" className="flex w-[60%] h-[8%] border-2 items-center rounded-lg justify-center" onClick={()=>{context.setIsMenuActive(false)}}>
           <div className="h-auto w-auto text-center font-extralight">
-            Sign In
+            Sign out
           </div>
         </NavLink>
         

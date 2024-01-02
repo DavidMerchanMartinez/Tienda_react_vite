@@ -9,7 +9,6 @@ const Navbar = () => {
   const context = useContext(ShoppingCartContext)
   const activeStyle = 'underline underline-offset-4 text-cyan-600'
   
-  console.log(context.isMenuActive)
 
 
   const menuClick = () => {
@@ -128,7 +127,7 @@ const Navbar = () => {
         </li>
         <li>
           <NavLink
-            to='/sing-in'
+            to='/sing-out'
             className={({ isActive }) =>
               isActive ? activeStyle : undefined
             }>

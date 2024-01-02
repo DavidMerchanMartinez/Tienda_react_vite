@@ -1,12 +1,12 @@
 import Layout from '../../Components/Layout'
-import SingIn from '../../Components/Singin'
+import SignIn from '../../Components/SignIn'
 
-function SignIn() {
+function Signin() {
   return (
     <Layout>
-      <SingIn/>
+      <SignIn/>
     </Layout>
   )
 }
 
-export default SignIn
+export default Signin
