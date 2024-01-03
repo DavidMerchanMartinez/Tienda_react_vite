@@ -11,6 +11,18 @@ export const ShoppingCartProvider = ({children}) => {
   const openProductDetail = () => setIsProductDetailOpen(true)
   const closeProductDetail = () => setIsProductDetailOpen(false)
 
+  // change account
+
+  const [account, setAccount] = useState(true)
+  const closeAccount = () => setAccount(false)
+  const openAccount = () => setAccount(true)
+
+  // disable links
+  const [disableLink, setDisableLink] = useState(false)
+  const gumUpLink = () => setDisableLink(true)
+  const enableLink = () => setDisableLink(false)
+
+
   // Checkout Side Menu · Open/Close
   const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false)
   const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true)
@@ -108,7 +120,16 @@ export const ShoppingCartProvider = ({children}) => {
       searchByCategory,
       setSearchByCategory,
       isMenuActive,
-      setIsMenuActive
+      setIsMenuActive,
+      openAccount,
+      closeAccount,
+      account,
+      setAccount,
+      disableLink,
+      gumUpLink,
+      setDisableLink,
+      enableLink
+
     }}>
       {children}
     </ShoppingCartContext.Provider>

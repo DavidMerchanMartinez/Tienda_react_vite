@@ -5,11 +5,14 @@ import { ShoppingCartContext } from '../../Context'
 import { FaShopify } from "react-icons/fa";
 import { LuMenuSquare } from "react-icons/lu";
 
+
 const Navbar = () => {
   const context = useContext(ShoppingCartContext)
   const activeStyle = 'underline underline-offset-4 text-cyan-600'
-  
 
+  const changeText = context.account ? "Sing Out" : "Sing In"
+
+  
 
   const menuClick = () => {
       if(context.isMenuActive){
@@ -18,6 +21,9 @@ const Navbar = () => {
         context.setIsMenuActive(true)
       } 
   }
+
+
+
 
 
 
@@ -35,11 +41,16 @@ const Navbar = () => {
           </NavLink>
         
           <NavLink to='/' 
-          onClick={() => {
+          onClick={(event) => {
+            if(context.disableLink){
+              event.preventDefault(); 
+            }else{
             context.setIsMenuActive(false)
             context.setSearchByCategory()
+            }
           }
-          }>
+          }
+          disabled = {context.disableLink}>
             <div className='flex items-center'><FaShopify className=' text-cyan-600'/>Shopi</div>
           </NavLink>
           
@@ -48,9 +59,13 @@ const Navbar = () => {
         <li>
           <NavLink
             to='/'
-            onClick={() =>{
+            onClick={(event) =>{
+              if(context.disableLink){
+                event.preventDefault(); 
+              }else{
               context.setSearchByCategory()
               context.setIsMenuActive(false)
+              }
             }
           }
             className={({ isActive }) =>
@@ -59,26 +74,37 @@ const Navbar = () => {
             All
           </NavLink>
         </li>
+
         <li>
           <NavLink
             to='/clothes'
-            onClick={() => {
-              context.setSearchByCategory("clothing")
-              context.setIsMenuActive(false)
+            onClick={(event) => {
+              if(context.disableLink){
+                event.preventDefault(); 
+              }else{
+                context.setSearchByCategory("clothing")
+                context.setIsMenuActive(false)
+              }
               }
             }
-            className={({ isActive }) =>
-              isActive ? activeStyle : undefined
-            }>
+
+             className={({ isActive }) =>
+               isActive ? activeStyle : undefined
+             }>
             Clothes
           </NavLink>
         </li>
+
         <li>
           <NavLink
             to='/electronics'
-            onClick={() => {
+            onClick={(event) => {
+              if(context.disableLink){
+                event.preventDefault(); 
+              }else{
               context.setSearchByCategory('electronics')
               context.setIsMenuActive(false)
+              }
             }
             }
             className={({ isActive }) =>
@@ -87,12 +113,17 @@ const Navbar = () => {
             Electronics
           </NavLink>
         </li>
+
         <li>
           <NavLink
             to='/jewelery'
-            onClick={() => {
+            onClick={(event) => {
+              if(context.disableLink){
+                event.preventDefault(); 
+              }else{
               context.setSearchByCategory("jewelery")
               context.setIsMenuActive(false)
+              }
             } 
             }
             className={({ isActive }) =>
@@ -107,9 +138,16 @@ const Navbar = () => {
         <li className='text-black/60'>
          david@gmail.com
         </li>
+
         <li>
           <NavLink
             to='/my-orders'
+            onClick={(event) => {
+              if(context.disableLink){
+                event.preventDefault(); 
+              }
+              }
+            }
             className={({ isActive }) =>
               isActive ? activeStyle : undefined
             }>
@@ -119,6 +157,12 @@ const Navbar = () => {
         <li>
           <NavLink
             to='/my-account'
+            onClick={(event) => {
+              if(context.disableLink){
+                event.preventDefault(); 
+              }
+              }
+            }
             className={({ isActive }) =>
               isActive ? activeStyle : undefined
             }>
@@ -126,13 +170,20 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink
-            to='/sing-out'
-            className={({ isActive }) =>
-              isActive ? activeStyle : undefined
-            }>
-            Sign out
-          </NavLink>
+        <NavLink
+         to='/sing-out'
+          className={({ isActive }) =>
+           isActive ? activeStyle : undefined
+                    }
+           onClick={()=>{
+            localStorage.setItem('sing-out', JSON.stringify(true))
+              context.closeAccount()
+              context.gumUpLink()
+           }}>
+              
+             {changeText}
+      </NavLink>
+        
         </li>
         <li className='flex items-center'>
           <ShoppingBagIcon className='h-6 w-6   text-cyan-600'></ShoppingBagIcon>
