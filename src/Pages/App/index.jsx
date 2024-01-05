@@ -30,16 +30,20 @@ const AppRoutes = () => {
     { path: '/*', element: <NotFound /> },
   ])
 
-  return routes
+  return (
+    <>
+      {routes}
+      <Navbar />
+      <CheckoutSideMenu />
+    </>
+  )
 }
 
 const App = () => {
   return (
     <ShoppingCartProvider>
       <BrowserRouter>
-        <AppRoutes />
-        <Navbar />
-        <CheckoutSideMenu />
+         <AppRoutes />
       </BrowserRouter>
     </ShoppingCartProvider>
   )
