@@ -1,8 +1,45 @@
 import { createContext, useState, useEffect } from 'react'
 
+
 export const ShoppingCartContext = createContext()
 
 export const ShoppingCartProvider = ({children}) => {
+
+        //local storage
+        const [localStorageInitialized, setLocalStorageInitialized] = useState(false);
+        const [user, setUser] = useState("")
+        const [email, setEmail] = useState("")
+        const [password, setPassword] = useState("")
+
+        const changeUser = (event) => setUser(event.target.value) 
+        const changeEmail = (event) => setEmail(event.target.value) 
+        const changePassword = (event) => setPassword(event.target.value) 
+
+        const submit = () =>{
+       
+        const datosFormulario = {
+            user,
+            email,
+            password
+        };
+
+
+        // save data in local storage
+        localStorage.setItem('datosFormulario', JSON.stringify(datosFormulario))  
+        localStorage.setItem('sing-out', JSON.stringify(false));   
+
+        setUser('')
+        setEmail('')
+        setPassword('')
+
+        window.location.href = '/'
+        }
+
+        const [userData, setUserData] = useState({
+          username: "",
+          password: ""
+      });
+
   // Shopping Cart · Increment quantity
   const [count, setCount] = useState(0)
 
@@ -18,6 +55,7 @@ export const ShoppingCartProvider = ({children}) => {
   const openAccount = () => setAccount(true)
 
   // disable links
+  
   const [disableLink, setDisableLink] = useState(false)
   const gumUpLink = () => setDisableLink(true)
   const enableLink = () => setDisableLink(false)
@@ -96,6 +134,32 @@ export const ShoppingCartProvider = ({children}) => {
     if (!searchByTitle && !searchByCategory) setFilteredItems(filterBy(null, items, searchByTitle, searchByCategory))
   }, [items, searchByTitle, searchByCategory])
 
+  useEffect(() => {  
+    const singOut = localStorage.getItem('sing-out')
+    if (singOut === 'true' && window.location.pathname !== '/sing-out') {
+        window.location.href = '/sing-out';
+    }
+}, []); 
+
+useEffect(() => {
+  if (!localStorageInitialized) {
+    // Verificar si la clave 'sing-out' ya existe en localStorage
+    if (localStorage.getItem('sing-out') === null) {
+      localStorage.setItem('sing-out', JSON.stringify(true))
+    }
+    setLocalStorageInitialized(true);
+  }
+}, [localStorageInitialized]);
+
+useEffect(() => {
+  const dataFromLocalStorage = localStorage.getItem('datosFormulario');
+  const parseData = JSON.parse(dataFromLocalStorage);
+  setUserData(parseData || { username: "", password: "" });
+
+}, []); 
+
+
+
   return (
     <ShoppingCartContext.Provider value={{
       count,
@@ -128,8 +192,19 @@ export const ShoppingCartProvider = ({children}) => {
       disableLink,
       gumUpLink,
       setDisableLink,
-      enableLink
-
+      enableLink,
+      user,
+      setUser,
+      email,
+      setEmail,
+      password,
+      setPassword,
+      changeUser,
+      changeEmail,
+      changePassword,
+      submit,
+      userData,
+      setUserData
     }}>
       {children}
     </ShoppingCartContext.Provider>

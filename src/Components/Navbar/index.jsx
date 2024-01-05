@@ -12,19 +12,15 @@ const Navbar = () => {
 
   const changeText = context.account ? "Sing Out" : "Sing In"
 
-  
 
   const menuClick = () => {
       if(context.isMenuActive){
         context.setIsMenuActive(false)
+        window.location.href = '/'
       }else{
         context.setIsMenuActive(true)
       } 
   }
-
-
-
-
 
 
   return (
@@ -33,7 +29,7 @@ const Navbar = () => {
         <li className='font-semibold text-lg flex items-center'>
         
         
-          <NavLink to={!context.isMenuActive? "/menu" : "/" } 
+          <NavLink to={!context.isMenuActive? "/menu" :  "" } 
                     className={`hidden celular:block `}
                     onClick={menuClick}
                    >
@@ -60,7 +56,7 @@ const Navbar = () => {
           <NavLink
             to='/'
             onClick={(event) =>{
-              if(context.disableLink){
+              if(localStorage.getItem('sing-out') == 'true'){ 
                 event.preventDefault(); 
               }else{
               context.setSearchByCategory()
@@ -79,7 +75,7 @@ const Navbar = () => {
           <NavLink
             to='/clothes'
             onClick={(event) => {
-              if(context.disableLink){
+              if(localStorage.getItem('sing-out') == 'true'){ 
                 event.preventDefault(); 
               }else{
                 context.setSearchByCategory("clothing")
@@ -99,7 +95,7 @@ const Navbar = () => {
           <NavLink
             to='/electronics'
             onClick={(event) => {
-              if(context.disableLink){
+              if(localStorage.getItem('sing-out') == 'true'){ 
                 event.preventDefault(); 
               }else{
               context.setSearchByCategory('electronics')
@@ -118,7 +114,7 @@ const Navbar = () => {
           <NavLink
             to='/jewelery'
             onClick={(event) => {
-              if(context.disableLink){
+              if(localStorage.getItem('sing-out') == 'true'){ 
                 event.preventDefault(); 
               }else{
               context.setSearchByCategory("jewelery")
@@ -143,7 +139,7 @@ const Navbar = () => {
           <NavLink
             to='/my-orders'
             onClick={(event) => {
-              if(context.disableLink){
+              if(localStorage.getItem('sing-out') == 'true'){
                 event.preventDefault(); 
               }
               }
@@ -157,9 +153,9 @@ const Navbar = () => {
         <li>
           <NavLink
             to='/my-account'
-            onClick={(event) => {
-              if(context.disableLink){
-                event.preventDefault(); 
+            onClick={(event) => {   
+              if(localStorage.getItem('sing-out') == 'true'){ 
+                event.preventDefault()
               }
               }
             }
